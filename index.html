@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" data-mood="pastel">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asiram — Studio</title>
+  <meta name="description" content="Paintings, drawings and prints by Asiram.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@300..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Set the mood before first paint so there is no flash
+    try {
+      const saved = localStorage.getItem('mood');
+      const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.mood = saved || (dark ? 'ink' : 'pastel');
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Asiram</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="moods" role="radiogroup" aria-label="Colour mood">
+      <button class="mood mood--mono" role="radio" data-mood="mono" aria-label="Mono"></button>
+      <button class="mood mood--pastel" role="radio" data-mood="pastel" aria-label="Pastel"></button>
+      <button class="mood mood--ink" role="radio" data-mood="ink" aria-label="Ink"></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="now"><span class="dot" aria-hidden="true"></span><span>Now showing — <em>Soft Hours</em>, Galerie Nord, until 14 Dec</span></p>
+      <h1>Quiet shapes<br>for <em>slow</em> looking.</h1>
+      <div class="hero-art" id="hero-art"></div>
+      <div class="hero-foot">
+        <p class="lede">Paintings, drawings and prints about light, rest and the small geometry of ordinary days.</p>
+        <a class="cue" href="#work">View work <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section id="work" class="work">
+      <div class="section-head">
+        <h2>Selected work <span class="count" id="count"></span></h2>
+        <div class="filters" role="tablist" aria-label="Filter work">
+          <button class="chip" role="tab" data-filter="all" aria-selected="true">All</button>
+          <button class="chip" role="tab" data-filter="painting" aria-selected="false">Painting</button>
+          <button class="chip" role="tab" data-filter="drawing" aria-selected="false">Drawing</button>
+          <button class="chip" role="tab" data-filter="print" aria-selected="false">Print</button>
+        </div>
+      </div>
+      <ul class="grid" id="grid"></ul>
+    </section>
+
+    <section id="about" class="about">
+      <figure class="portrait">
+        <div class="portrait-img" aria-hidden="true"></div>
+        <figcaption>In the studio, autumn 2026</figcaption>
+      </figure>
+      <div class="about-body">
+        <h2>About</h2>
+        <p class="big">Asiram paints slowly, in thin layers, until a picture feels like a room you could sit in.</p>
+        <p>Working between oil, gouache and risograph, the studio returns to a handful of forms — the arch, the circle, the horizon — and lets colour do the talking. Work is held in private collections across Europe.</p>
+        <dl class="cv">
+          <div><dt>2026</dt><dd><em>Soft Hours</em> — Galerie Nord, solo</dd></div>
+          <div><dt>2025</dt><dd><em>Paper Weather</em> — Kunstraum Ost, group</dd></div>
+          <div><dt>2024</dt><dd><em>Half Light</em> — Studio Open, solo</dd></div>
+          <div><dt>2023</dt><dd>Residency — Atelier Lumen</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <p class="eyebrow">Commissions, studio visits, or just hello</p>
+      <a class="mail" href="mailto:hello@asiram.studio">hello@asiram.studio</a>
+      <ul class="links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Prints shop</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Asiram</span>
+    <span>Demo images: <a href="https://www.metmuseum.org/about-the-met/policies-and-documents/open-access">The Met Open Access</a></span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Artwork">
+    <button class="lb-close" data-close aria-label="Close">Close</button>
+    <figure class="lb-figure">
+      <div class="lb-art" id="lb-art"></div>
+      <figcaption class="lb-cap">
+        <span class="lb-title" id="lb-title"></span>
+        <span class="lb-meta" id="lb-meta"></span>
+      </figcaption>
+    </figure>
+    <div class="lb-nav">
+      <button data-step="-1" aria-label="Previous work">←</button>
+      <span id="lb-index"></span>
+      <button data-step="1" aria-label="Next work">→</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
